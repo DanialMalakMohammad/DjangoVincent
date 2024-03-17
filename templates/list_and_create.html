@@ -1,0 +1,19 @@
+{% extends "base2.html" %}
+
+{% block content %}
+
+{% for post in objects %}
+
+    <div class="post-entry">
+    <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
+    <p>{{ post.body }}</p>
+    </div>
+{% endfor %}
+
+    <h1>New post</h1>
+ <form action="" method="post">{% csrf_token %}
+     {{ form.as_p }}
+    <input type="submit" value="Save">
+</form>
+
+{% endblock content %}
