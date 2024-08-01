@@ -18,7 +18,15 @@
         </header>
             {% if user.is_authenticated %}
                 <p>Hi {{ user.username }}! You are {{ user.age }} years old.</p>
-                <p><a href="{% url 'logout' %}">Log out</a></p>
+                <p>
+                    <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+{#                         <input type="submit">#}
+                    <button type="submit">logout</button>
+{#                    <a  href="javascript:$('#frm_logout').submit();" >logout</a> #}
+                    </form></p>
+                    <p><a href="{% url 'password_change' %}">Change password</a>
+                </p>
             {% else %}
                 <p>You are not logged in.</p>
                 <a href="{% url 'login' %}">Log In</a> {% endif %}
